@@ -1,8 +1,9 @@
 #include <iostream>
+#include "../include/main.h"
+
+using namespace std;
 
 int main(){
-    std::cout << "Hello, World!" << std::endl;
-    std::cout << "This project uses C++23 standard." << std::endl;
-   
+    handleInput();
     return 0;
 }
