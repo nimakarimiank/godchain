@@ -2,6 +2,7 @@
 #define MAIN_H
 #include <iostream>
 #include <sstream>
+#include "ssh_utils/ssh.h"
 using namespace std;
 void printMenu() {
     println("********** SSH Key Manager **********");
@@ -14,19 +15,69 @@ void printMenu() {
     println("**************************************");
 }
 void handleInput(){
-
     int choice = 0;
     string choice_str;
     while (choice != 6) {
+        printMenu();
         try {
-            printMenu();
             getline(cin, choice_str);
             stringstream(choice_str) >> choice;
         }
         catch (const std::exception& e) {
-            cout << "Invalid input. Please enter a number between 1 and 6." << endl;
+            println("Invalid input. Please enter a number between 1 and 6." );
             continue;
         }
+        switch (choice){
+            case 1:{
+                createSSHKey();
+                break;
+            }           
+            case 2:{
+                listSSHKeys();
+                break;
+            }           
+            case 3:{
+                string keyName;
+                println("Enter the name of the SSH key to delete:");
+                getline(cin, keyName);
+                if (keyName.empty()) {
+                    println("No key name provided. Please try again.");
+                    continue;
+                }
+                else{
+                    deleteSSHKey(&keyName);
+                }
+                break;
+            }           
+            case 4:{
+                string keyName;
+                println("Enter the name of the SSH key to activate:");
+                getline(cin, keyName);
+                if (keyName.empty()) {
+                    println("No key name provided. Please try again.");
+                    continue;
+                }
+                else{
+                    activateSSHKey(&keyName);
+                    }
+                break;
+            }           
+            case 5:{
+                string keyName;
+                println("Enter the name of the SSH key to deactivate:");
+                getline(cin, keyName);
+                if (keyName.empty()) {
+                    println("No key name provided. Please try again.");
+                    continue;
+                }
+                else{
+                    deactivateSSHKey(&keyName);
+                }
+                break;
+            }
+        }
     }
+    println("Exiting SSH Key Manager. Goodbye!");
 }
+
 #endif
