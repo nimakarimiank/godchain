@@ -1,5 +1,6 @@
 #include "../include/main.h"
-int main(){
+int main()
+{
     handleInput();
     return 0;
 }
