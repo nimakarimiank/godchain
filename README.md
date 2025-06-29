@@ -20,7 +20,7 @@ A simple C++ command-line tool to manage your SSH keys and automate adding them 
 
 2. **Run the tool:**
    ```sh
-   ./ssh_key_manager [options]
+   ./GODCHAIN [options]
    ```
 
    Example options (to be implemented):
